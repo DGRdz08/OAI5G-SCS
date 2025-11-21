@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "nas_stream_eea1.h": "c",
+        "key_nas_deriver.h": "c",
+        "nas_stream_eia2.h": "c",
+        "nas_stream_eia1.h": "c",
+        "nas_stream_eea2.h": "c",
+        "sortransparentcontainer.h": "c",
+        "fgmm_identity_request.h": "c"
+    }
+}

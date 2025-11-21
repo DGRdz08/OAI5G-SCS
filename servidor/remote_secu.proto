@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package secu;
+
+import "google/protobuf/empty.proto";
+
+option cc_enable_arenas = true;
+
+enum EeaAlg {
+  EEA0      = 0;
+  EEA1_128  = 1;
+  EEA2_128  = 2;
+}
+
+enum EiaAlg {
+  EIA0      = 0;
+  EIA1_128  = 1;
+  EIA2_128  = 2;
+}
+
+message StreamInitRequest {
+  int32 algorithm = 1;
+  bytes key       = 2;  // clave de 16 bytes
+}
+
+message StreamInitResponse {
+  uint64 ctx_id = 1;    // identificador de contexto remoto
+}
+
+message StreamFreeRequest {
+  uint64 ctx_id = 1;
+}
+
+message NasStreamCipher {
+  uint64 ctx_id    = 1; // ID de contexto remoto
+  uint32 count     = 2;
+  uint32 bearer    = 3;
+  uint32 direction = 4;
+  bytes  message   = 5; // datos a cifrar / integrizar
+  uint32 blength   = 6; // longitud en bits
+}
+
+message IntegrityRequest {
+  EiaAlg alg         = 1;
+  NasStreamCipher sc = 2;
+}
+
+message IntegrityResponse {
+  bytes mac = 1;        // 4 bytes
+}
+
+message EncryptRequest {
+  EeaAlg alg         = 1;
+  NasStreamCipher sc = 2;
+}
+
+message EncryptResponse {
+  bytes data = 1;       // datos cifrados / descifrados
+}
+
+service SecuService {
+  rpc StreamIntegrityInit(StreamInitRequest) returns (StreamInitResponse);
+  rpc StreamIntegrityFree(StreamFreeRequest) returns (google.protobuf.Empty);
+
+  rpc StreamCipheringInit(StreamInitRequest) returns (StreamInitResponse);
+  rpc StreamCipheringFree(StreamFreeRequest) returns (google.protobuf.Empty);
+
+  rpc StreamComputeIntegrity(IntegrityRequest) returns (IntegrityResponse);
+  rpc StreamComputeEncrypt(EncryptRequest)     returns (EncryptResponse);
+}

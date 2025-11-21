@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "assertions.h": "c",
+        "byte_array.h": "c",
+        "nas_stream_eia1.h": "c",
+        "nas_stream_eea2.h": "c",
+        "nas_stream_eea0.h": "c"
+    }
+}
