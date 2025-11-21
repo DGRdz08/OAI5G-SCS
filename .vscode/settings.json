@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "e1ap.h": "c",
+        "e1ap_common.h": "c",
+        "intertask_interface.h": "c"
+    }
+}

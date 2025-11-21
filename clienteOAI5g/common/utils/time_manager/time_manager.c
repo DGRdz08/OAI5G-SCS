@@ -85,7 +85,7 @@ void time_manager_start(time_manager_tick_function_t *_tick_functions,
 {
   bool has_time_server = false;
   bool has_time_client = false;
-  char *default_server_ip = "127.0.0.1";
+  char *default_server_ip = "192.168.112.28"; //Originalmente 127.0.0.1
   int default_server_port = 7374;
   char *server_ip = NULL;
   int server_port = -1;

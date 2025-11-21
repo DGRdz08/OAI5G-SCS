@@ -63,7 +63,7 @@ static void *cuup_tester_rrc(void *)
 /* @brief Initialize E1 interface (as if it was CU-CP) */
 static void init_e1()
 {
-  net_ip_address_t ip = {.ipv4 = 1, .ipv4_address = "127.0.0.1" };
+  net_ip_address_t ip = {.ipv4 = 1, .ipv4_address = "192.168.112.28" };
   e1ap_net_config_t conf = { .CUCP_e1_ip_address = ip };
   MessageDef *msg = itti_alloc_new_message(TASK_GNB_APP, 0, E1AP_REGISTER_REQ);
   e1ap_net_config_t *e1ap_nc = &E1AP_REGISTER_REQ(msg).net_config;
@@ -552,9 +552,9 @@ int main(int argc, char *argv[])
       {"p", "packet size\n", 0, .uptr = &packet_size, .defuintval = 1400, TYPE_UINT},
       {"d", "DL target rate (Mbps, per UE)\n", 0, .u64ptr = &target_rate_dl, .defint64val = 60, TYPE_UINT64},
       {"u", "UL target rate (Mbps, per UE)\n", 0, .u64ptr = &target_rate_ul, .defint64val = 60, TYPE_UINT64},
-      {"ng-ip", "Tester NG-U IP\n", 0, .strptr = &ng_ip, .defstrval = "127.0.0.1", TYPE_STRING, 100},
+      {"ng-ip", "Tester NG-U IP\n", 0, .strptr = &ng_ip, .defstrval = "192.168.112.28", TYPE_STRING, 100},
       {"ng-port", "Tester NG-U port\n", 0, .u16ptr = &ng_port, .defuintval = 2152, TYPE_UINT16},
-      {"f1-ip", "Tester F1-U IP\n", 0, .strptr = &f1_ip, .defstrval = "127.0.0.1", TYPE_STRING, 100},
+      {"f1-ip", "Tester F1-U IP\n", 0, .strptr = &f1_ip, .defstrval = "192.168.112.28", TYPE_STRING, 100},
       {"f1-port", "Tester F1-U port\n", 0, .u16ptr = &f1_port, .defuintval = 2153, TYPE_UINT16},
   };
   config_get(uniqCfg, param_def, sizeofArray(param_def), NULL);
